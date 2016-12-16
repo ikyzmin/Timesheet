@@ -10,6 +10,7 @@ public class Record {
     public int photoId;
     public Date start;
     public Date end;
+    public String categoryName;
     public int categoryId;
     public Photo photo;
     public int time;

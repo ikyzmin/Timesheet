@@ -4,6 +4,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/description_hint" />
+
+    <android.support.v7.widget.AppCompatSpinner
+        android:id="@+id/categories_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/add_photo"
         android:layout_width="match_parent"

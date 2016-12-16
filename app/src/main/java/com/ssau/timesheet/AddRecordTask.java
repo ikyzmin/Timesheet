@@ -31,11 +31,17 @@ public class AddRecordTask extends AsyncTask<Record, Void, Long> {
         db = mDbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         ContentValues photoValues = new ContentValues();
+        long newPhotoId = Integer.MIN_VALUE;
         try {
-            photoValues.put(RecordContract.PhotoEntry.PHOTO, getBitmapAsByteArray(records[0].photo.uri));
-            long newPhotoId = db.insert(RecordContract.PhotoEntry.TABLE_NAME, null, photoValues);
-            values.put(RecordContract.RecordEntry.DESCRIPTION, records[0].description + newPhotoId + "");
-            values.put(RecordContract.RecordEntry.PHOTOS_ID, newPhotoId);
+            if (records[0].photo.uri != null) {
+                photoValues.put(RecordContract.PhotoEntry.PHOTO, getBitmapAsByteArray(records[0].photo.uri));
+                newPhotoId = db.insert(RecordContract.PhotoEntry.TABLE_NAME, null, photoValues);
+            }
+            values.put(RecordContract.RecordEntry.DESCRIPTION, records[0].description);
+            if (newPhotoId > Integer.MIN_VALUE) {
+                values.put(RecordContract.RecordEntry.PHOTOS_ID, newPhotoId);
+            }
+            values.put(RecordContract.RecordEntry.CATEGORY, records[0].categoryId);
             long newRowId = db.insert(RecordContract.RecordEntry.TABLE_NAME, null, values);
             return newRowId;
         } catch (IOException e) {

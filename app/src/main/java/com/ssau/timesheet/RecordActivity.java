@@ -5,11 +5,17 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.AppCompatEditText;
+import android.support.v7.widget.AppCompatSpinner;
 import android.view.View;
+import android.widget.ArrayAdapter;
 
+import com.ssau.timesheet.adapter.CategoryAdapter;
 import com.ssau.timesheet.adapter.RecordAdapter;
+import com.ssau.timesheet.database.Category;
 import com.ssau.timesheet.database.Photo;
 import com.ssau.timesheet.database.Record;
 
@@ -20,6 +26,8 @@ public class RecordActivity extends AppCompatActivity {
 
     AppCompatButton addPhoto;
     AppCompatButton addRecord;
+    AppCompatSpinner categoriesSpinner;
+    AppCompatEditText descriptionEditText;
     Uri path;
 
     public static void startMe(Context context) {
@@ -33,7 +41,14 @@ public class RecordActivity extends AppCompatActivity {
         setContentView(R.layout.a_record);
         addPhoto = (AppCompatButton) findViewById(R.id.add_photo);
         addRecord = (AppCompatButton) findViewById(R.id.add_record);
-
+        descriptionEditText = (AppCompatEditText) findViewById(R.id.description);
+        categoriesSpinner = (AppCompatSpinner) findViewById(R.id.categories_spinner);
+        try {
+            CategoryAdapter categoryAdapter = new CategoryAdapter(this, new GetCategoriesTask(this).execute().get());
+            categoriesSpinner.setAdapter(categoryAdapter);
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
         addPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,7 +61,8 @@ public class RecordActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Record record = new Record();
-                record.description = "test";
+                record.description = descriptionEditText.getText().toString();
+                record.categoryId = ((Category) (categoriesSpinner.getSelectedItem())).id;
                 Photo photo = new Photo();
                 photo.uri = path;
                 record.photo = photo;

@@ -31,7 +31,7 @@ public class RecordContract {
     public static abstract class CategoryEntry implements BaseColumns {
         public static final String TABLE_NAME = "category";
         public static final String NAME = "name";
-        public static final String CREATE = "CREATE TABLE " + TABLE_NAME + " (" + _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "+NAME+" TEXT "+")";
+        public static final String CREATE = "CREATE TABLE " + TABLE_NAME + " (" + _ID + " INTEGER PRIMARY KEY, "+NAME+" TEXT "+")";
         public static final String DELETE =
                 "DROP TABLE IF EXISTS " + TABLE_NAME;
 

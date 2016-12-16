@@ -2,4 +2,12 @@
     <string name="app_name">Timesheet</string>
     <string name="add_record">Add record</string>
     <string name="add_photo">Add photo</string>
+    <string name="description_hint">Enter description</string>
+    <string-array name="categories">
+        <item>Work</item>
+        <item>Dinner</item>
+        <item>Rest</item>
+        <item>Clean</item>
+        <item>Sleep</item>
+    </string-array>
 </resources>

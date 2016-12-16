@@ -47,7 +47,8 @@ public class GetRecordsTask extends AsyncTask<Void, Void, ArrayList<Record>> {
         while (c.moveToNext()) {
             Record record = new Record();
             record.description = c.getString(2);
-            record.photoId = c.getInt(1);
+            record.photoId = c.isNull(1)?Integer.MIN_VALUE:c.getInt(1);
+            record.categoryId = c.getInt(0);
             records.add(record);
         }
         return records;
