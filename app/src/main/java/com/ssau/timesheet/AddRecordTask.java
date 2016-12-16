@@ -33,8 +33,8 @@ public class AddRecordTask extends AsyncTask<Record, Void, Long> {
         ContentValues photoValues = new ContentValues();
         try {
             photoValues.put(RecordContract.PhotoEntry.PHOTO, getBitmapAsByteArray(records[0].photo.uri));
-            values.put(RecordContract.RecordEntry.DESCRIPTION, records[0].description);
             long newPhotoId = db.insert(RecordContract.PhotoEntry.TABLE_NAME, null, photoValues);
+            values.put(RecordContract.RecordEntry.DESCRIPTION, records[0].description + newPhotoId + "");
             values.put(RecordContract.RecordEntry.PHOTOS_ID, newPhotoId);
             long newRowId = db.insert(RecordContract.RecordEntry.TABLE_NAME, null, values);
             return newRowId;

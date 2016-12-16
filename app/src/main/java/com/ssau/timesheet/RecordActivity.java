@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.view.View;
 
+import com.ssau.timesheet.adapter.RecordAdapter;
 import com.ssau.timesheet.database.Photo;
 import com.ssau.timesheet.database.Record;
 
@@ -32,6 +33,7 @@ public class RecordActivity extends AppCompatActivity {
         setContentView(R.layout.a_record);
         addPhoto = (AppCompatButton) findViewById(R.id.add_photo);
         addRecord = (AppCompatButton) findViewById(R.id.add_record);
+
         addPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,6 +53,7 @@ public class RecordActivity extends AppCompatActivity {
                 AddRecordTask addRecordTask = new AddRecordTask(RecordActivity.this);
                 try {
                     addRecordTask.execute(record).get();
+                    finish();
                 } catch (InterruptedException | ExecutionException e) {
                     e.printStackTrace();
                 }

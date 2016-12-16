@@ -14,5 +14,5 @@
         android:id="@+id/add_record"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/add_photo" />
+        android:text="@string/add_record" />
 </LinearLayout>
