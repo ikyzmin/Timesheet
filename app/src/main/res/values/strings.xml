@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Timesheet</string>
+    <string name="add_record">Add record</string>
+    <string name="add_photo">Add photo</string>
+</resources>
