@@ -12,8 +12,11 @@ import com.ssau.timesheet.database.RecordHelper;
 import java.text.ParseException;
 import java.util.ArrayList;
 
+/**
+ * Created by Илья on 19.12.2016.
+ */
 
-public class GetRecordsTask extends AsyncTask<Void, Void, ArrayList<Record>> {
+public class GetRecordByIdTask extends AsyncTask<Long,Void,Record> {
 
     private Context context;
     private RecordHelper mDbHelper;
@@ -27,39 +30,42 @@ public class GetRecordsTask extends AsyncTask<Void, Void, ArrayList<Record>> {
             RecordContract.RecordEntry.TIME
     };
 
-    public GetRecordsTask(Context context) {
+    public GetRecordByIdTask(Context context) {
         this.context = context;
         mDbHelper = new RecordHelper(context);
     }
 
     @Override
-    protected ArrayList<Record> doInBackground(Void... voids) {
+    protected Record doInBackground(Long[] objects) {
         db = mDbHelper.getWritableDatabase();
-        ArrayList<Record> records = new ArrayList<>();
+        String selection=  RecordContract.RecordEntry._ID+"="+objects[0].toString();
+        String [] selectionArg=  {objects[0].toString()};
+        com.ssau.timesheet.database.Record record = null;
         Cursor c = db.query(
                 RecordContract.RecordEntry.TABLE_NAME,
                 projection,
-                null,
+                selection,
                 null,
                 null,
                 null,
                 null
         );
         while (c.moveToNext()) {
-            Record record = new Record();
+            record = new com.ssau.timesheet.database.Record();
             record.id = c.getInt(0);
             record.description = c.getString(2);
             record.categoryId = c.getInt(1);
             try {
-                record.start = !c.isNull(3) ? Record.DATE_FORMATTER.parse(c.getString(3)) : null;
-                record.end = !c.isNull(4) ? Record.DATE_FORMATTER.parse(c.getString(4)) : null;
+                record.start = !c.isNull(3) ? com.ssau.timesheet.database.Record.DATE_FORMATTER.parse(c.getString(3)) : null;
+                record.end = !c.isNull(4) ? com.ssau.timesheet.database.Record.DATE_FORMATTER.parse(c.getString(4)) : null;
                 record.time = !c.isNull(5) ? c.getInt(5) : -1;
             } catch (ParseException e) {
                 e.printStackTrace();
-            } finally {
-                records.add(record);
+            }
+            finally {
+                c.close();
             }
         }
-        return records;
+        return record;
     }
 }

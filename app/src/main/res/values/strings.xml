@@ -1,8 +1,23 @@
 <resources>
     <string name="app_name">Timesheet</string>
     <string name="add_record">Add record</string>
+    <string name="show_chart">Show chart</string>
     <string name="add_photo">Add photo</string>
     <string name="description_hint">Enter description</string>
+    <string name="date_hint">Click here to enter date</string>
+    <string name="start_date_title">Start date</string>
+    <string name="end_date_title">End date</string>
+    <string name="date_format">%1$sh:%2$sm</string>
+    <string name="statistics_type_format">Statistics for %s</string>
+    <string name="all_time_statistics">all time</string>
+    <string name="most_often_category_label">Most often category</string>
+    <string name="max_time_category_label">Category by max time</string>
+    <string name="from_date_hint">Click here to select start date</string>
+    <string name="to_date_hint">Click here to select end date</string>
+    <string name="common_ok">Ok</string>
+    <string name="common_from">From</string>
+    <string name="common_to">To</string>
+    <string name="statistics_date_format">%1$s - %2$s</string>
     <string-array name="categories">
         <item>Work</item>
         <item>Dinner</item>

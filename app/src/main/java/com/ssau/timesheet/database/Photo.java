@@ -2,7 +2,9 @@ package com.ssau.timesheet.database;
 
 import android.net.Uri;
 
+import java.util.ArrayList;
+
 public class Photo {
 
-    public Uri uri;
+    public ArrayList<Uri> uri;
 }

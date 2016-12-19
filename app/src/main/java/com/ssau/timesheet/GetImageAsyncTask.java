@@ -10,8 +10,10 @@ import android.os.AsyncTask;
 import com.ssau.timesheet.database.RecordContract;
 import com.ssau.timesheet.database.RecordHelper;
 
+import java.util.ArrayList;
 
-public class GetImageAsyncTask extends AsyncTask<Long, Void, Bitmap> {
+
+public class GetImageAsyncTask extends AsyncTask<Long, Void, ArrayList<Bitmap>> {
 
     private Context context;
     private RecordHelper mDbHelper;
@@ -26,19 +28,18 @@ public class GetImageAsyncTask extends AsyncTask<Long, Void, Bitmap> {
     }
 
     @Override
-    protected Bitmap doInBackground(Long... longs) {
+    protected ArrayList<Bitmap> doInBackground(Long... longs) {
         db = mDbHelper.getWritableDatabase();
-        String selection = RecordContract.PhotoEntry._ID + " = ?";
-        String[] selectionArg = new String[]{longs[0].toString()};
-        Cursor cursor = db.query(RecordContract.PhotoEntry.TABLE_NAME, projection, selection, selectionArg, null, null, null);
+        String selection = RecordContract.PhotoEntry.RECORD_ID + " = "+longs[0];
+        Cursor cursor = db.query(RecordContract.PhotoEntry.TABLE_NAME, projection, selection, null, null, null, null);
+        ArrayList<Bitmap> bitmaps = new ArrayList<>();
         while (cursor.moveToNext()) {
             byte[] imgByte = cursor.getBlob(0);
-            cursor.close();
-            return BitmapFactory.decodeByteArray(imgByte, 0, imgByte.length);
+            bitmaps.add(BitmapFactory.decodeByteArray(imgByte, 0, imgByte.length));
         }
         if (cursor != null && !cursor.isClosed()) {
             cursor.close();
         }
-        return null;
+        return bitmaps;
     }
 }

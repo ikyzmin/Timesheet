@@ -49,11 +49,8 @@ public class RecordsActivity extends AppCompatActivity {
         ArrayList<Record> records;
         try {
             records = getRecordsTask.execute().get();
-            recordAdapter = new RecordAdapter(records);
+            recordAdapter = new RecordAdapter(this, records);
             for (int i = 0; i < records.size(); i++) {
-                if (records.get(i).photoId != Integer.MIN_VALUE) {
-                    records.get(i).bitmap = new GetImageAsyncTask(this).execute((long) records.get(i).photoId).get();
-                }
                 records.get(i).categoryName = new GetCategoryTask(this).execute((long) records.get(i).categoryId).get().name;
             }
             recordsRecyclerView.setAdapter(recordAdapter);
@@ -69,7 +66,9 @@ public class RecordsActivity extends AppCompatActivity {
             case R.id.add_record:
                 addRecord();
                 return true;
-
+            case R.id.show_chart:
+                addCharts();
+                return true;
         }
         if (toggleButton.onOptionsItemSelected(item)) {
             return true;
@@ -79,6 +78,10 @@ public class RecordsActivity extends AppCompatActivity {
 
     private void addRecord() {
         RecordActivity.startMe(this);
+    }
+
+    private void addCharts() {
+        ChartActivity.start(this);
     }
 
 

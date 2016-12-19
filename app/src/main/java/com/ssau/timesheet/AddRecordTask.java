@@ -33,16 +33,20 @@ public class AddRecordTask extends AsyncTask<Record, Void, Long> {
         ContentValues photoValues = new ContentValues();
         long newPhotoId = Integer.MIN_VALUE;
         try {
+
+                values.put(RecordContract.RecordEntry.DESCRIPTION, records[0].description);
+                values.put(RecordContract.RecordEntry.CATEGORY, records[0].categoryId);
+                values.put(RecordContract.RecordEntry.TIME,records[0].time);
+                values.put(RecordContract.RecordEntry.START, Record.DATE_FORMATTER.format(records[0].start));
+                values.put(RecordContract.RecordEntry.END, Record.DATE_FORMATTER.format(records[0].end));
+                long newRowId = db.insert(RecordContract.RecordEntry.TABLE_NAME, null, values);
             if (records[0].photo.uri != null) {
-                photoValues.put(RecordContract.PhotoEntry.PHOTO, getBitmapAsByteArray(records[0].photo.uri));
-                newPhotoId = db.insert(RecordContract.PhotoEntry.TABLE_NAME, null, photoValues);
+                for (Uri uri : records[0].photo.uri) {
+                    photoValues.put(RecordContract.PhotoEntry.PHOTO, getBitmapAsByteArray(uri));
+                    photoValues.put(RecordContract.PhotoEntry.RECORD_ID,newRowId);
+                    newPhotoId = db.insert(RecordContract.PhotoEntry.TABLE_NAME, null, photoValues);
+                }
             }
-            values.put(RecordContract.RecordEntry.DESCRIPTION, records[0].description);
-            if (newPhotoId > Integer.MIN_VALUE) {
-                values.put(RecordContract.RecordEntry.PHOTOS_ID, newPhotoId);
-            }
-            values.put(RecordContract.RecordEntry.CATEGORY, records[0].categoryId);
-            long newRowId = db.insert(RecordContract.RecordEntry.TABLE_NAME, null, values);
             return newRowId;
         } catch (IOException e) {
             e.printStackTrace();

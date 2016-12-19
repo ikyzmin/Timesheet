@@ -2,12 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/add_record"
-        android:icon="@drawable/plus"
+        android:id="@+id/select_range"
+        android:icon="@drawable/calendar"
         android:title="@string/add_record"
         app:showAsAction="always" />
-    <item
-        android:id="@+id/show_chart"
-        android:icon="@drawable/plus"
-        android:title="@string/show_chart" />
 </menu>
