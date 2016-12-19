@@ -52,7 +52,7 @@ public class RecordActivity extends AppCompatActivity {
 
     TimePickerDialog.OnTimeSetListener endTimeCallback = new TimePickerDialog.OnTimeSetListener() {
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-            dateAndTime.setTime(startDate);
+            dateAndTime.setTime(endDate);
             dateAndTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
             dateAndTime.set(Calendar.MINUTE, minute);
             endDate = dateAndTime.getTime();

@@ -34,8 +34,8 @@ public class RangeSelectionActivity extends AppCompatActivity {
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
             dateAndTime.set(year, month, dayOfMonth);
             startDate = dateAndTime.getTime();
-            dateAndTime = Calendar.getInstance();
             startTextView.setText(Record.DATE_FORMATTER.format(dateAndTime.getTime()));
+            dateAndTime = Calendar.getInstance();
         }
     };
     private final DatePickerDialog.OnDateSetListener endDateSetListener = new DatePickerDialog.OnDateSetListener() {

@@ -6,6 +6,6 @@ public class MostOftenCategorySelection {
 
     @Override
     public String toString() {
-        return category;
+        return category+"\n"+count+" times";
     }
 }
