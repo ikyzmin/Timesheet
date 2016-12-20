@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class RecordHelper extends SQLiteOpenHelper {
     // If you change the database schema, you must increment the database version.
-    public static final int DATABASE_VERSION = 8;
+    public static final int DATABASE_VERSION = 13;
     public static final String DATABASE_NAME = "timesheet.db";
 
     public RecordHelper(Context context) {
@@ -25,6 +25,7 @@ public class RecordHelper extends SQLiteOpenHelper {
         // to simply to discard the data and start over
         db.execSQL(RecordContract.RecordEntry.DELETE);
         db.execSQL(RecordContract.CategoryEntry.DELETE);
+        db.execSQL(RecordContract.PhotoEntry.DELETE);
         onCreate(db);
     }
 

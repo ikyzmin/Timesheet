@@ -28,7 +28,7 @@ public class RecordContract {
         public static final String TABLE_NAME = "photo";
         public static final String PHOTO = "_photo";
         public static final String RECORD_ID = "record_id";
-        public static final String CREATE = "CREATE TABLE " + TABLE_NAME + " (" + _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + PHOTO + " BLOB, " + RECORD_ID + " REFERENCES " + RecordEntry.TABLE_NAME + "(" + RecordEntry._ID + ")" + " ) ";
+        public static final String CREATE = "CREATE TABLE " + TABLE_NAME + " (" + _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + PHOTO + " BLOB,"+RECORD_ID+" INTEGER,"+" FOREIGN KEY (" + RECORD_ID + ") REFERENCES " + RecordEntry.TABLE_NAME + "(" + RecordEntry._ID + ") ON DELETE CASCADE" + " ) ";
         public static final String DELETE =
                 "DROP TABLE IF EXISTS " + TABLE_NAME;
 

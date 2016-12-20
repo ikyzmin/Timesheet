@@ -15,6 +15,7 @@
     <string name="from_date_hint">Click here to select start date</string>
     <string name="to_date_hint">Click here to select end date</string>
     <string name="common_ok">Ok</string>
+    <string name="common_delete">Delete</string>
     <string name="common_from">From</string>
     <string name="common_to">To</string>
     <string name="statistics_date_format">%1$s - %2$s</string>

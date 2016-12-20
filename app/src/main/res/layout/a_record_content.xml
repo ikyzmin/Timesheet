@@ -7,32 +7,38 @@
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/category_text_view"
         android:layout_width="match_parent"
-        android:gravity="center"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:gravity="center" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/description_text_view"
         android:layout_width="match_parent"
-        android:gravity="center"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:gravity="center" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/date_text_view"
         android:layout_width="match_parent"
-        android:gravity="center"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:gravity="center" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/time_text_view"
         android:layout_width="match_parent"
-        android:gravity="center"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:gravity="center" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/delete_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/common_delete" />
 
     <GridView
         android:id="@+id/photos_grid_view"
         android:layout_width="match_parent"
-        android:numColumns="3"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:numColumns="3" />
 
 
 </LinearLayout>

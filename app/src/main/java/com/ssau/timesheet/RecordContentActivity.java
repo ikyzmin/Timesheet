@@ -6,7 +6,9 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;
+import android.view.View;
 import android.widget.GridView;
 
 import com.ssau.timesheet.adapter.ImageAdapter;
@@ -28,6 +30,7 @@ public class RecordContentActivity extends AppCompatActivity {
     AppCompatTextView descriptionTextView;
     AppCompatTextView dateTextView;
     AppCompatTextView timeTextView;
+    AppCompatButton deleteButton;
     GridView photoGridView;
 
     public static void startMe(Context context, long id) {
@@ -52,7 +55,21 @@ public class RecordContentActivity extends AppCompatActivity {
         dateTextView = (AppCompatTextView) findViewById(R.id.date_text_view);
         timeTextView = (AppCompatTextView) findViewById(R.id.time_text_view);
         photoGridView = (GridView) findViewById(R.id.photos_grid_view);
-
+        deleteButton = (AppCompatButton) findViewById(R.id.delete_button);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    new DeleteRecordTask(RecordContentActivity.this).execute(id).get();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } finally {
+                    finish();
+                }
+            }
+        });
     }
 
     @Override
