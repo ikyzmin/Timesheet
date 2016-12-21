@@ -41,6 +41,10 @@ public class RecordContract {
         public static final String DELETE =
                 "DROP TABLE IF EXISTS " + TABLE_NAME;
 
+        public static final String GET_TIME_BY_CATEGORIES = "SELECT "+"sum(" + RecordEntry.TABLE_NAME+"."+RecordEntry.TIME + ") FROM " + RecordEntry.TABLE_NAME +" WHERE "+RecordEntry.CATEGORY+" IN %1$s";
+        public static final String GET_TIME_BY_CATEGORIES_BETWEEN = "SELECT "+"sum(" + RecordEntry.TABLE_NAME+"."+RecordEntry.TIME + ") FROM " + RecordEntry.TABLE_NAME +" WHERE "+RecordEntry.TABLE_NAME+"."+RecordEntry.START+" >= \"1$s\" "+" AND "+RecordEntry.TABLE_NAME+"."+RecordEntry.END+" <= \"%2$s\""+" AND "+RecordEntry.CATEGORY+" IN %3$s";
+
+
     }
 
 }

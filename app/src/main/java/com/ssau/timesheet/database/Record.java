@@ -12,6 +12,7 @@ public class Record {
     public static final DateFormat DATE_FORMATTER = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
     public static final DateFormat ITEM_FORMATTER = new SimpleDateFormat("dd/MMM/yy HH:mm");
     public static final DateFormat STATISTIC_FORMATTER = new SimpleDateFormat("dd/MMM/yy");
+    public  static  final DateFormat TIME_FORMATTER = new SimpleDateFormat("HH:mm:ss");
 
 
     public String description;

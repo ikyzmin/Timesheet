@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.ssau.timesheet.ListOfMaximumsFragment;
 import com.ssau.timesheet.PieFragment;
+import com.ssau.timesheet.TimeByCategoryFragment;
 
 public class StatisticsPagerAdapter extends FragmentStatePagerAdapter {
 
@@ -15,7 +16,7 @@ public class StatisticsPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-            Fragment fragment = null;
+        Fragment fragment = null;
         switch (position) {
             case 0:
                 fragment = new ListOfMaximumsFragment();
@@ -24,6 +25,7 @@ public class StatisticsPagerAdapter extends FragmentStatePagerAdapter {
                 fragment = new PieFragment();
                 break;
             case 2:
+                fragment = new TimeByCategoryFragment();
                 break;
         }
         return fragment;
@@ -31,6 +33,6 @@ public class StatisticsPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 2;
+        return 3;
     }
 }

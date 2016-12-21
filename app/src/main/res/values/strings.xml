@@ -18,6 +18,7 @@
     <string name="common_delete">Delete</string>
     <string name="common_from">From</string>
     <string name="common_to">To</string>
+    <string name="summary_time_by_categories">Summary time : %1$s</string>
     <string name="statistics_date_format">%1$s - %2$s</string>
     <string-array name="categories">
         <item>Work</item>

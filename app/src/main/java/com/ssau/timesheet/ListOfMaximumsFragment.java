@@ -53,12 +53,14 @@ public class ListOfMaximumsFragment extends BaseStatisticsFragment {
     public void onDateSet(String start, String end) {
         startDate = start;
         endDate = end;
-        statisticsLabel.setText(getString(R.string.statistics_type_format, getString(R.string.statistics_date_format, startDate, endDate)));
-        loadStatistic();
+        if (!isDetached()) {
+            loadStatistic();
+        }
     }
 
     private void loadStatistic() {
         GetRecordsByCategoryTask getRecordsByCategoryTask = new GetRecordsByCategoryTask(getContext());
+        statisticsLabel.setText(getString(R.string.statistics_type_format, getString(R.string.statistics_date_format, startDate, endDate)));
 
         ArrayList<MostOftenCategorySelection> records;
         try {

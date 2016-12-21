@@ -37,6 +37,7 @@ public class GetCategoriesTask extends AsyncTask<Void, Void, ArrayList<Category>
             category.name = cursor.getString(1);
             categories.add(category);
         }
+        cursor.close();
         return categories;
     }
 }

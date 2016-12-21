@@ -58,6 +58,7 @@ public class GetRecordsTask extends AsyncTask<Void, Void, ArrayList<Record>> {
                 e.printStackTrace();
             } finally {
                 records.add(record);
+               // c.close();
             }
         }
         return records;

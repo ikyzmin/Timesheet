@@ -17,39 +17,49 @@ public abstract class BaseStatisticsFragment extends Fragment {
     public static final String ACTION_DATE_SET = "dateSet";
     public static final String DATE_START_EXTRA = "dateStart";
     public static final String DATE_END_EXTRA = "dateExtra";
-    private LocalBroadcastManager localBroadcastManager;
+    private static LocalBroadcastManager localBroadcastManager;
 
-    private final BroadcastReceiver dateSetBroadcastReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            onDateSet(intent.getStringExtra(DATE_START_EXTRA), intent.getStringExtra(DATE_END_EXTRA));
-        }
-    };
+    private  BroadcastReceiver dateSetBroadcastReceiver;
 
-    private static final ArrayList<BroadcastReceiver> registeredBroadcasts = new ArrayList<>();
     private static int registeredCount = 0;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        localBroadcastManager = LocalBroadcastManager.getInstance(getContext());
+        if (dateSetBroadcastReceiver == null) {
+            dateSetBroadcastReceiver = new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    onDateSet(intent.getStringExtra(DATE_START_EXTRA), intent.getStringExtra(DATE_END_EXTRA));
+                }
+            };
+        }
+        if (localBroadcastManager == null) {
+            localBroadcastManager = LocalBroadcastManager.getInstance(getContext());
+        }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if (registeredCount==0) {
+                dateSetBroadcastReceiver = new BroadcastReceiver() {
+                    @Override
+                    public void onReceive(Context context, Intent intent) {
+                        onDateSet(intent.getStringExtra(DATE_START_EXTRA), intent.getStringExtra(DATE_END_EXTRA));
+                    }
+                };
             localBroadcastManager.registerReceiver(dateSetBroadcastReceiver, new IntentFilter(ACTION_DATE_SET));
-        }
-        registeredCount++;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+            localBroadcastManager.unregisterReceiver(dateSetBroadcastReceiver);
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        if (--registeredCount == 0) {
-            localBroadcastManager.unregisterReceiver(dateSetBroadcastReceiver);
-        }
     }
 
     public abstract void onDateSet(String start, String end);
