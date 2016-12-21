@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;
@@ -58,10 +59,10 @@ public class RangeSelectionActivity extends AppCompatActivity {
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.putExtra(START_DATE, Record.STATISTIC_FORMATTER.format(startDate));
-                intent.putExtra(END_DATE, Record.STATISTIC_FORMATTER.format(endDate));
-                setResult(RESULT_OK, intent);
+                Intent intent = new Intent(BaseStatisticsFragment.ACTION_DATE_SET);
+                intent.putExtra(BaseStatisticsFragment.DATE_START_EXTRA, Record.STATISTIC_FORMATTER.format(startDate));
+                intent.putExtra(BaseStatisticsFragment.DATE_END_EXTRA, Record.STATISTIC_FORMATTER.format(endDate));
+                LocalBroadcastManager.getInstance(RangeSelectionActivity.this).sendBroadcast(intent);
                 finish();
             }
         });
@@ -101,4 +102,6 @@ public class RangeSelectionActivity extends AppCompatActivity {
         Intent intent = new Intent(activity, RangeSelectionActivity.class);
         activity.startActivityForResult(intent, REQUEST_RANGE);
     }
+
+
 }

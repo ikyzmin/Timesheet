@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical">
+
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar_layout"
@@ -17,36 +19,8 @@
             android:layout_height="wrap_content" />
     </android.support.design.widget.AppBarLayout>
 
-
-    <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/statictics_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <android.support.v7.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/most_often_category_label" />
-
-    <ListView
-        android:id="@+id/most_often_category"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/statistics_view_pager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <android.support.v7.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/max_time_category_label" />
-
-    <ListView
-        android:id="@+id/max_time_category_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <view
-        android:id="@+id/pie_view"
-        class="im.dacer.androidcharts.PieView"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content" />
-
+        android:layout_height="match_parent" />
 </LinearLayout>
